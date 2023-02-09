@@ -9,5 +9,5 @@ setup(
     description='Tooling for the INI deep dive with the HAWK data',
     packages=find_packages(),    
     include_package_data=True,
-    install_requires=['six', 'gdown'],
+    install_requires=['six', 'gdown','h5py'],
 )

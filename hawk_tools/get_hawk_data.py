@@ -16,7 +16,7 @@ def isiter(arg):
 def get_data_from_test_key(camp, key, tmpdir):
     if not os.path.exists(tmpdir):
         os.makedirs(tmpdir)
-    fname = os.path.join(tmpdir, f"{camp}_{key}")
+    fname = os.path.join(tmpdir, f"{camp}_{key}.hd5")
     if not os.path.isfile(fname):
         gdown.download(id=data_ids[camp][key], output=fname, quiet=False)
     else:
