@@ -33,19 +33,19 @@ def get_hawk_data(
             f"Please select LMS or NI for frequency and time datasets repsctively"
         )
     keys = []
-    all_runs = [
-        int(k.split("_")[-1]) for k in data_ids[test_camp].keys() if test_id in k
-    ]
+    all_runs = set([
+        int(k.split("_")[-2]) for k in data_ids[test_camp].keys() if test_id in k
+    ])
     if test_runs is None:
         test_runs = all_runs
     elif not isiter(test_runs):
         test_runs = [test_runs]
     for run in test_runs:
-        all_reps = [
+        all_reps = set([
             int(k.split("_")[-1])
             for k in data_ids[test_camp].keys()
             if f"{test_id}_{run}" in k
-        ]
+        ])
         if test_reps is None:
             test_reps = all_reps
         elif not isiter(test_reps):
@@ -70,4 +70,4 @@ def get_hawk_data(
 
 # %%
 
-# data = get_hawk_data("LMS", "BR_AR")
+data = get_hawk_data("LMS", "BR_AR")
