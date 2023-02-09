@@ -26,7 +26,7 @@ def get_data_from_test_key(camp, key, tmpdir):
 
 
 def get_hawk_data(
-    test_camp, test_id, test_runs=None, test_reps=None, download_dir="./.hawk_data", disk_only=False
+    test_camp, test_id, test_runs=None, test_reps=None, download_dir="./.hawk_data", disk_only=False, ask=True
 ):
     if not test_camp in {"NI", "LMS"}:
         raise ValueError(
@@ -53,7 +53,7 @@ def get_hawk_data(
         for rep in test_reps:
             keys.append(f"{test_id}_{run}_{rep}")
     keys = set(keys)
-    if len(keys) >= 10:
+    if len(keys) >= 10 and ask:
         flag = input(
             f"A large number of data files have been requested ({len(keys)}) i.e. >{len(keys)*0.2}GB of data do you wish to continue? y/n   "
         )
@@ -70,4 +70,4 @@ def get_hawk_data(
 
 # %%
 
-data = get_hawk_data("LMS", "BR_AR")
+#data = get_hawk_data("LMS", "BR_AR")
