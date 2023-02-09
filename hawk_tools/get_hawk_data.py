@@ -26,7 +26,7 @@ def get_data_from_test_key(camp, key, tmpdir):
 
 
 def get_hawk_data(
-    test_camp, test_id, test_runs=None, test_reps=None, tmpdir="./.tmp_hawk_data", disk_only=False
+    test_camp, test_id, test_runs=None, test_reps=None, download_dir="./.hawk_data", disk_only=False
 ):
     if not test_camp in {"NI", "LMS"}:
         raise ValueError(
@@ -62,9 +62,9 @@ def get_hawk_data(
     d = {}
     for k in keys:
         if disk_only:
-            _ = get_data_from_test_key(test_camp, k, tmpdir)
+            _ = get_data_from_test_key(test_camp, k, download_dir)
         else:
-            d |= {k: get_data_from_test_key(test_camp, k, tmpdir)}
+            d |= {k: get_data_from_test_key(test_camp, k, download_dir)}
     return d
 
 
