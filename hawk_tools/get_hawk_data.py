@@ -5,7 +5,7 @@ import gdown
 import six
 
 from hawk_tools.lut import keys as data_ids
-from hawk_tools.hdf5_loader import load_hdf5
+from hawk_tools.new_hdf5_loader import load_hdf5
 
 
 def isiter(arg):

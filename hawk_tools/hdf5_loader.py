@@ -25,8 +25,6 @@ Last Updated on:
 """
 import h5py
 
-# def load_hdf5(filename: str, meta: bool = True, )
-
 
 def load_hdf5(filename: str = "BR_AR_1_1.hdf5"):
     """
