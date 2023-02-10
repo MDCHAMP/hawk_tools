@@ -147,5 +147,5 @@ def load_hdf5(
                     hf[k]['Timestamp'].read_direct(out[k]['Timestamp']['value'])
     else:
         raise ValueError('Invalid HDF5 Test Series')
-
+    hf.close()
     return out
