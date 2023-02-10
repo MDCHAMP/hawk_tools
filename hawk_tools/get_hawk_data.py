@@ -21,7 +21,7 @@ def get_data_from_test_key(camp, key, tmpdir, load_kwargs):
         gdown.download(id=data_ids[camp][key], output=fname, quiet=False)
     else:
         print(f"Using cached version: {fname}")
-    dat = load_hdf5(fname, **load_kwargs)
+    dat = load_hdf5(fname, test_series=camp, **load_kwargs)
     return dat
 
 
