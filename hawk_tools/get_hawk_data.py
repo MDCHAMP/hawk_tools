@@ -62,9 +62,9 @@ def get_hawk_data(
     d = {}
     for k in keys:
         if disk_only:
-            _ = get_data_from_test_key(test_camp, k, download_dir)
+            _ = get_data_from_test_key(test_camp, k, download_dir, load_kwargs)
         else:
-            d |= {k: get_data_from_test_key(test_camp, k, download_dir)}
+            d |= {k: get_data_from_test_key(test_camp, k, download_dir, load_kwargs)}
     return d
 
 
