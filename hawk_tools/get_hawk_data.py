@@ -1,5 +1,6 @@
 import collections
 import os
+from time import sleep
 
 import gdown
 import six
@@ -66,6 +67,8 @@ def get_hawk_data(
             _ = get_data_from_test_key(test_camp, k, download_dir, load_kwargs, quiet=quiet)
         else:
             d |= {k: get_data_from_test_key(test_camp, k, download_dir, load_kwargs, quiet=quiet)}
+        if len(keys) > 20:
+            sleep(5) # API rate limiting
     return d
 
 
