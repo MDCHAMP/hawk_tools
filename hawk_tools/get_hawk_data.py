@@ -13,20 +13,21 @@ def isiter(arg):
         arg, six.string_types
     )
 
-def get_data_from_test_key(camp, key, tmpdir, load_kwargs):
+def get_data_from_test_key(camp, key, tmpdir, load_kwargs, quiet=False):
     if not os.path.exists(tmpdir):
         os.makedirs(tmpdir)
     fname = os.path.join(tmpdir, f"{camp}_{key}.hd5")
     if not os.path.isfile(fname):
-        gdown.download(id=data_ids[camp][key], output=fname, quiet=False)
+        gdown.download(id=data_ids[camp][key], output=fname, quiet=quiet)
     else:
-        print(f"Using cached version: {fname}")
+        if not quiet:
+            print(f"Using cached version: {fname}")
     dat = load_hdf5(fname, test_series=camp, **load_kwargs)
     return dat
 
 
 def get_hawk_data(
-    test_camp, test_id, test_runs=None, test_reps=None, download_dir="./.hawk_data", disk_only=False, ask=True, load_kwargs={}
+    test_camp, test_id, test_runs=None, test_reps=None, download_dir="./.hawk_data", disk_only=False, ask=True, load_kwargs={}, quiet=False
 ):
     if not test_camp in {"NI", "LMS"}:
         raise ValueError(
@@ -62,9 +63,9 @@ def get_hawk_data(
     d = {}
     for k in keys:
         if disk_only:
-            _ = get_data_from_test_key(test_camp, k, download_dir, load_kwargs)
+            _ = get_data_from_test_key(test_camp, k, download_dir, load_kwargs, quiet=quiet)
         else:
-            d |= {k: get_data_from_test_key(test_camp, k, download_dir, load_kwargs)}
+            d |= {k: get_data_from_test_key(test_camp, k, download_dir, load_kwargs, quiet=quiet)}
     return d
 
 
